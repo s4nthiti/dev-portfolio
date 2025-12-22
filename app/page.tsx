@@ -72,9 +72,29 @@ function HomeContent() {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Detect mobile device
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      mediaQuery.removeEventListener('change', handleChange);
+    };
   }, []);
 
   if (!mounted) {
@@ -224,10 +244,12 @@ function HomeContent() {
               }}
               className={`fixed top-0 left-0 h-full w-64 z-50 border-r md:hidden ${
                 theme === "dark"
-                  ? "bg-slate-900/98 border-slate-700 backdrop-blur-sm"
+                  ? "bg-slate-900/98 border-slate-700"
                   : theme === "nature"
-                  ? "bg-orange-50/98 border-orange-200 backdrop-blur-sm"
-                  : "bg-white/98 border-slate-200 backdrop-blur-sm"
+                  ? "bg-orange-50/98 border-orange-200"
+                  : "bg-white/98 border-slate-200"
+              } ${
+                isMobile ? '' : 'backdrop-blur-sm'
               }`}
             >
               <div className="flex flex-col h-full">
@@ -296,52 +318,69 @@ function HomeContent() {
           {/* Animated background elements */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
-              animate={{
+              animate={prefersReducedMotion || isMobile ? {} : {
                 scale: [1, 1.2, 1],
                 rotate: [0, 90, 0],
               }}
-              transition={{
+              transition={prefersReducedMotion || isMobile ? {} : {
                 duration: 20,
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className={`absolute top-10 left-4 sm:top-20 sm:left-20 w-48 h-48 sm:w-72 sm:h-72 rounded-full blur-3xl ${
+              className={`absolute top-10 left-4 sm:top-20 sm:left-20 w-48 h-48 sm:w-72 sm:h-72 rounded-full ${
+                isMobile ? 'blur-xl' : 'blur-3xl'
+              } ${
                 theme === "dark" 
                   ? "bg-cyan-500/20" 
                   : theme === "nature"
                   ? "bg-orange-400/20"
                   : "bg-cyan-500/10"
               }`}
+              style={{ 
+                willChange: prefersReducedMotion || isMobile ? 'auto' : 'transform',
+                transform: 'translateZ(0)',
+                WebkitTransform: 'translateZ(0)'
+              }}
             />
             <motion.div
-              animate={{
+              animate={prefersReducedMotion || isMobile ? {} : {
                 scale: [1.2, 1, 1.2],
                 rotate: [90, 0, 90],
               }}
-              transition={{
+              transition={prefersReducedMotion || isMobile ? {} : {
                 duration: 15,
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className={`absolute bottom-10 right-4 sm:bottom-20 sm:right-20 w-64 h-64 sm:w-96 sm:h-96 rounded-full blur-3xl ${
+              className={`absolute bottom-10 right-4 sm:bottom-20 sm:right-20 w-64 h-64 sm:w-96 sm:h-96 rounded-full ${
+                isMobile ? 'blur-xl' : 'blur-3xl'
+              } ${
                 theme === "dark" 
                   ? "bg-purple-500/20" 
                   : theme === "nature"
                   ? "bg-green-400/20"
                   : "bg-purple-500/10"
               }`}
+              style={{ 
+                willChange: prefersReducedMotion || isMobile ? 'auto' : 'transform',
+                transform: 'translateZ(0)',
+                WebkitTransform: 'translateZ(0)'
+              }}
             />
           </div>
 
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+            variants={prefersReducedMotion ? {} : containerVariants}
+            initial={prefersReducedMotion ? undefined : "hidden"}
+            animate={prefersReducedMotion ? undefined : "visible"}
             className="relative z-10 max-w-5xl mx-auto text-center w-full mb-40"
           >
-            <motion.div variants={itemVariants} className="mb-2">
+            <motion.div 
+              variants={prefersReducedMotion ? {} : itemVariants} 
+              className="mb-2"
+            >
               <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileHover={isMobile || prefersReducedMotion ? {} : { scale: 1.1, rotate: 5 }}
                 className="inline-block"
               >
                 <Image
@@ -390,24 +429,26 @@ function HomeContent() {
           </motion.div>
 
           {/* Scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, repeat: Infinity, repeatType: "reverse" }}
-            className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
-          >
+          {!prefersReducedMotion && (
             <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-6 h-10 border-2 border-slate-400 rounded-full flex justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, repeat: Infinity, repeatType: "reverse" }}
+              className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
             >
               <motion.div
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-1 h-3 bg-slate-400 rounded-full mt-2"
-              />
+                animate={isMobile ? {} : { y: [0, 10, 0] }}
+                transition={isMobile ? {} : { duration: 1.5, repeat: Infinity }}
+                className="w-6 h-10 border-2 border-slate-400 rounded-full flex justify-center"
+              >
+                <motion.div
+                  animate={isMobile ? {} : { y: [0, 12, 0] }}
+                  transition={isMobile ? {} : { duration: 1.5, repeat: Infinity }}
+                  className="w-1 h-3 bg-slate-400 rounded-full mt-2"
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          )}
         </section>
 
         {/* About Section */}
