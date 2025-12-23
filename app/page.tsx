@@ -618,6 +618,52 @@ function HomeContent() {
           </motion.div>
         </section>
 
+        {/* ClickUp Section */}
+        <section
+          id="clickup"
+          className="py-24 px-4 sm:px-6"
+        >
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-5xl mx-auto"
+          >
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                {t("clickup.title")} <span className="gradient-text">{t("clickup.clickup")}</span>
+              </h2>
+              <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-green-400 rounded-full" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="w-full"
+            >
+              <div className="w-full rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-slate-700">
+                <iframe 
+                  className="clickup-embed w-full" 
+                  src="https://sharing.clickup.com/90182225944/b/h/6-901814455252-2/2b7765218debe75" 
+                  width="100%" 
+                  height="700px" 
+                  style={{ background: 'transparent', border: 'none' }} 
+                  onWheel={() => {}}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        </section>
+
         {/* Contact Section */}
         <section
           id="contact"

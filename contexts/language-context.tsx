@@ -28,6 +28,10 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.viewWork": "View My Work",
     "hero.getInTouch": "Contact Me",
     
+    // ClickUp
+    "clickup.title": "Project",
+    "clickup.clickup": "Management",
+    
     // About
     "about.title": "About",
     "about.me": "Me",
@@ -82,6 +86,10 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.subtitle": "คิดถึงผู้ช่วย",
     "hero.viewWork": "ดูผลงาน",
     "hero.getInTouch": "ติดต่อ",
+
+    // ClickUp
+    "clickup.title": "Project",
+    "clickup.clickup": "Management",
     
     // About
     "about.title": "เกี่ยวกับ",
