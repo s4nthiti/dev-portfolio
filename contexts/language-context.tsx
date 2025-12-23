@@ -25,6 +25,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.title1": "OrangeLeafy",
     "hero.title2": "Studio",
     "hero.subtitle": "Your modern web solutions partner.",
+    "hero.subtitle2": "We offer comprehensive web development services",
+    "hero.subtitle3": "from design to development, with expert guidance.",
     "hero.viewWork": "View My Work",
     "hero.getInTouch": "Contact Me",
     
@@ -71,7 +73,6 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.author": "Santhiti Traiyasakda",
     "footer.rights": "All rights reserved.",
     "footer.built": "Built with",
-    "footer.and": "&",
   },
   th: {
     // Navigation
@@ -83,7 +84,9 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     "hero.title1": "OrangeLeafy",
     "hero.title2": "Studio",
-    "hero.subtitle": "คิดถึงผู้ช่วย",
+    "hero.subtitle": "เว็ปไซต์คุณภาพคิดถึงเรา",
+    "hero.subtitle2": "บริการสร้างเว็ปไซต์ครบวงจร",
+    "hero.subtitle3": "ตั้งแต่การออกแบบจนถึงพัฒนา พร้อมให้คำปรึกษา",
     "hero.viewWork": "ดูผลงาน",
     "hero.getInTouch": "ติดต่อ",
 
@@ -130,7 +133,6 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.author": "สัณฐิติ ไตรยศักดา",
     "footer.rights": "สงวนลิขสิทธิ์",
     "footer.built": "สร้างด้วย",
-    "footer.and": "&",
   },
 };
 

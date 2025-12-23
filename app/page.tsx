@@ -20,7 +20,9 @@ import {
   ExternalLink,
   Phone,
   Menu,
-  X
+  X,
+  Sparkles,
+  Star
 } from "lucide-react";
 import { LineIcon } from "@/components/icons/line-icon";
 import { useEffect, useState, useRef } from "react";
@@ -148,7 +150,7 @@ function HomeContent() {
             backgroundColor: 'transparent',
             background: 'transparent'
           }}
-          className="mx-auto flex max-w-7xl items-center justify-center px-4 sm:px-6 py-5 sm:py-4 relative"
+          className="mx-auto flex max-w-7xl items-center justify-center px-4 sm:px-6 py-4 sm:py-5 relative"
         >
           {/* Mobile Menu Button */}
           <button
@@ -314,7 +316,7 @@ function HomeContent() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden pt-0">
+        <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden pt-16 sm:pt-0">
           {/* Animated background elements */}
           <div className="absolute inset-0 overflow-hidden">
             <motion.div
@@ -373,11 +375,11 @@ function HomeContent() {
             variants={prefersReducedMotion ? {} : containerVariants}
             initial={prefersReducedMotion ? undefined : "hidden"}
             animate={prefersReducedMotion ? undefined : "visible"}
-            className="relative z-10 max-w-5xl mx-auto text-center w-full mb-40"
+            className="relative z-10 max-w-6xl mx-auto text-center w-full mb-20 sm:mb-40"
           >
             <motion.div 
               variants={prefersReducedMotion ? {} : itemVariants} 
-              className="mb-2"
+              className="mb-6 sm:mb-8"
             >
               <motion.div
                 whileHover={isMobile || prefersReducedMotion ? {} : { scale: 1.1, rotate: 5 }}
@@ -388,7 +390,7 @@ function HomeContent() {
                   alt="Orange Leaf Studio"
                   width={256}
                   height={256}
-                  className="mx-auto w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72"
+                  className="mx-auto w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 drop-shadow-2xl"
                   priority
                 />
               </motion.div>
@@ -396,34 +398,73 @@ function HomeContent() {
             
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-10 leading-tight"
+              className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 md:mb-10 leading-tight px-2"
               style={{ fontFamily: 'var(--font-pacifico), cursive' }}
             >
               <span className="gradient-text">{t("hero.title1")}</span>{" "}
-              <span>{t("hero.title2")}</span>
+              <span className={theme === "dark" ? "text-white" : theme === "nature" ? "text-orange-950" : "text-slate-900"}>{t("hero.title2")}</span>
             </motion.h1>
 
             <motion.p
               variants={itemVariants}
-              className={`text-xl md:text-2xl mb-8 max-w-2xl mx-auto ${
+              className={`text-base sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-6 max-w-2xl mx-auto px-4 font-medium ${
                 theme === "dark" 
-                  ? "text-slate-300" 
+                  ? "text-slate-200" 
                   : theme === "nature"
                   ? "text-orange-800"
-                  : "text-slate-600"
+                  : "text-slate-700"
               }`}
             >
               {t("hero.subtitle")}
             </motion.p>
 
+            <motion.p
+              variants={itemVariants}
+              className={`text-sm sm:text-base md:text-lg lg:text-xl mb-3 sm:mb-4 max-w-2xl mx-auto px-4 leading-relaxed ${
+                theme === "dark" 
+                  ? "text-slate-300" 
+                  : theme === "nature"
+                  ? "text-orange-700"
+                  : "text-slate-600"
+              }`}
+            >
+              {t("hero.subtitle2")}
+            </motion.p>
+
+            <motion.p
+              variants={itemVariants}
+              className={`text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto px-4 leading-relaxed ${
+                theme === "dark" 
+                  ? "text-slate-300" 
+                  : theme === "nature"
+                  ? "text-orange-700"
+                  : "text-slate-600"
+              }`}
+            >
+              {t("hero.subtitle3")}
+            </motion.p>
+
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-4 justify-center"
+              className="flex flex-wrap gap-4 justify-center px-4"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button asChild variant="outline" size="lg">
-                  <a href="#contact">{t("hero.getInTouch")}</a>
-                </Button>
+              <motion.div 
+                whileHover={isMobile ? {} : { scale: 1.05 }} 
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto"
+              >
+                <a 
+                  href="#contact"
+                  className={`inline-flex items-center justify-center rounded-lg px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium transition-all duration-300 ${
+                    theme === "dark"
+                      ? "bg-gradient-to-r from-purple-600 to-purple-500 text-white border border-white/20 hover:from-purple-500 hover:to-purple-400 shadow-lg shadow-purple-500/20"
+                      : theme === "nature"
+                      ? "bg-gradient-to-r from-orange-500 to-orange-400 text-white border border-orange-300/30 hover:from-orange-400 hover:to-orange-300 shadow-lg shadow-orange-500/20"
+                      : "bg-gradient-to-r from-purple-600 to-purple-500 text-white border border-purple-300/30 hover:from-purple-500 hover:to-purple-400 shadow-lg shadow-purple-500/20"
+                  }`}
+                >
+                  {t("hero.getInTouch")}
+                </a>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -433,18 +474,30 @@ function HomeContent() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1, repeat: Infinity, repeatType: "reverse" }}
-              className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
+              transition={{ delay: 1, duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
+              className="absolute bottom-12 sm:bottom-20 left-1/2 transform -translate-x-1/2 z-10"
             >
               <motion.div
                 animate={isMobile ? {} : { y: [0, 10, 0] }}
                 transition={isMobile ? {} : { duration: 1.5, repeat: Infinity }}
-                className="w-6 h-10 border-2 border-slate-400 rounded-full flex justify-center"
+                className={`w-6 h-10 border-2 rounded-full flex justify-center ${
+                  theme === "dark"
+                    ? "border-slate-400"
+                    : theme === "nature"
+                    ? "border-orange-400"
+                    : "border-slate-500"
+                }`}
               >
                 <motion.div
                   animate={isMobile ? {} : { y: [0, 12, 0] }}
                   transition={isMobile ? {} : { duration: 1.5, repeat: Infinity }}
-                  className="w-1 h-3 bg-slate-400 rounded-full mt-2"
+                  className={`w-1 h-3 rounded-full mt-2 ${
+                    theme === "dark"
+                      ? "bg-slate-400"
+                      : theme === "nature"
+                      ? "bg-orange-400"
+                      : "bg-slate-500"
+                  }`}
                 />
               </motion.div>
             </motion.div>
@@ -454,23 +507,23 @@ function HomeContent() {
         {/* About Section */}
         <section
           id="about"
-          className="py-24 px-4 sm:px-6"
+          className="py-16 sm:py-24 px-4 sm:px-6"
         >
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-5xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-12"
+              className="mb-8 sm:mb-12"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
                 {t("about.title")} <span className="gradient-text">{t("about.me")}</span>
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-green-400 rounded-full" />
@@ -525,23 +578,23 @@ function HomeContent() {
         {/* Projects Section */}
         <section
           id="projects"
-          className="py-24 px-4 sm:px-6"
+          className="py-16 sm:py-24 px-4 sm:px-6"
         >
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-5xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-12"
+              className="mb-8 sm:mb-12"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
                 {t("projects.title")} <span className="gradient-text">{t("projects.projects")}</span>
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-green-400 rounded-full" />
@@ -565,36 +618,48 @@ function HomeContent() {
                 >
                   <Card className="glass group hover:border-cyan-500/50 transition-all duration-300">
                     <CardHeader>
-                      <div className="flex items-start justify-between gap-4">
-                        <CardTitle className="text-2xl group-hover:text-cyan-400 transition-colors">
+                      <div className="flex items-start justify-between gap-3 sm:gap-4">
+                        <CardTitle className="text-xl sm:text-2xl group-hover:text-cyan-400 transition-colors flex-1">
                           {t(project.titleKey)}
                         </CardTitle>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 flex-shrink-0">
                           {project.github && (
                             <motion.a
                               href={project.github}
-                              whileHover={{ scale: 1.1, rotate: 5 }}
+                              whileHover={isMobile ? {} : { scale: 1.1, rotate: 5 }}
                               whileTap={{ scale: 0.9 }}
-                              className="text-slate-400 hover:text-white"
+                              className={`${
+                                theme === "dark"
+                                  ? "text-slate-400 hover:text-white"
+                                  : theme === "nature"
+                                  ? "text-orange-600 hover:text-orange-800"
+                                  : "text-slate-500 hover:text-slate-700"
+                              }`}
                             >
-                              <Github className="w-5 h-5" />
+                              <Github className="w-5 h-5 sm:w-6 sm:h-6" />
                             </motion.a>
                           )}
                           {project.link && (
                             <motion.a
                               href={project.link}
-                              whileHover={{ scale: 1.1, rotate: -5 }}
+                              whileHover={isMobile ? {} : { scale: 1.1, rotate: -5 }}
                               whileTap={{ scale: 0.9 }}
-                              className="text-slate-400 hover:text-cyan-400"
+                              className={`${
+                                theme === "dark"
+                                  ? "text-slate-400 hover:text-cyan-400"
+                                  : theme === "nature"
+                                  ? "text-orange-600 hover:text-orange-800"
+                                  : "text-slate-500 hover:text-cyan-500"
+                              }`}
                             >
-                              <ExternalLink className="w-5 h-5" />
+                              <ExternalLink className="w-5 h-5 sm:w-6 sm:h-6" />
                             </motion.a>
                           )}
                         </div>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <CardDescription className={`text-base mb-4 ${
+                      <CardDescription className={`text-sm sm:text-base mb-4 leading-relaxed ${
                         theme === "dark" 
                           ? "text-slate-300" 
                           : theme === "nature"
@@ -621,23 +686,23 @@ function HomeContent() {
         {/* ClickUp Section */}
         <section
           id="clickup"
-          className="py-24 px-4 sm:px-6"
+          className="py-16 sm:py-24 px-4 sm:px-6"
         >
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-5xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mb-12"
+              className="mb-8 sm:mb-12"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
                 {t("clickup.title")} <span className="gradient-text">{t("clickup.clickup")}</span>
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-green-400 rounded-full" />
@@ -655,7 +720,7 @@ function HomeContent() {
                   className="clickup-embed w-full" 
                   src="https://sharing.clickup.com/90182225944/b/h/6-901814455252-2/2b7765218debe75" 
                   width="100%" 
-                  height="700px" 
+                  height="600px"
                   style={{ background: 'transparent', border: 'none' }} 
                   onWheel={() => {}}
                 />
@@ -667,7 +732,7 @@ function HomeContent() {
         {/* Contact Section */}
         <section
           id="contact"
-          className="py-24 px-4 sm:px-6"
+          className="py-16 sm:py-24 px-4 sm:px-6"
         >
           <motion.div
             initial={{ opacity: 0 }}
@@ -681,13 +746,13 @@ function HomeContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              className="text-center mb-8 sm:mb-12"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
                 {t("contact.title")}
               </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-green-400 rounded-full mx-auto mb-8" />
-              <p className={`text-xl mb-8 ${
+              <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-green-400 rounded-full mx-auto mb-6 sm:mb-8" />
+              <p className={`text-base sm:text-lg md:text-xl mb-6 sm:mb-8 px-4 ${
                 theme === "dark" 
                   ? "text-slate-300" 
                   : theme === "nature"
@@ -707,8 +772,9 @@ function HomeContent() {
             >
               <motion.a
                 href="mailto:s4nthiti@gmail.com"
-                whileHover={{ scale: 1.02, y: -2 }}
-                className="glass p-6 rounded-lg flex items-center gap-4 group transition-all"
+                whileHover={isMobile ? {} : { scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="glass p-4 sm:p-6 rounded-lg flex items-center gap-3 sm:gap-4 group transition-all"
               >
                 <div className="p-3 rounded-full bg-cyan-500/20 group-hover:bg-cyan-500/30 transition-colors">
                   <Mail className="w-6 h-6 text-cyan-400" />
@@ -739,8 +805,9 @@ function HomeContent() {
                 href="https://line.me/ti/p/~s4nthiti"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.02, y: -2 }}
-                className="glass p-6 rounded-lg flex items-center gap-4 group transition-all"
+                whileHover={isMobile ? {} : { scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="glass p-4 sm:p-6 rounded-lg flex items-center gap-3 sm:gap-4 group transition-all"
               >
                 <div className="p-3 rounded-full bg-green-500/20 group-hover:bg-green-500/30 transition-colors">
                   <LineIcon className="w-6 h-6 text-green-400" />
@@ -769,8 +836,9 @@ function HomeContent() {
 
               <motion.a
                 href="tel:+66916151618"
-                whileHover={{ scale: 1.02, y: -2 }}
-                className="glass p-6 rounded-lg flex items-center gap-4 group transition-all"
+                whileHover={isMobile ? {} : { scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="glass p-4 sm:p-6 rounded-lg flex items-center gap-3 sm:gap-4 group transition-all"
               >
                 <div className="p-3 rounded-full bg-purple-500/20 group-hover:bg-purple-500/30 transition-colors">
                   <Phone className="w-6 h-6 text-purple-400" />
@@ -806,9 +874,9 @@ function HomeContent() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="py-8 px-4 sm:px-6"
+        className="py-6 sm:py-8 px-4 sm:px-6"
       >
-        <div className={`max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm ${
+        <div className={`max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm ${
           theme === "dark" 
             ? "text-slate-500" 
             : theme === "nature"
@@ -817,7 +885,7 @@ function HomeContent() {
         }`}>
           <p>© {new Date().getFullYear()} {t("footer.author")}. {t("footer.rights")}</p>
           <p>
-            {t("footer.built")} <span className="text-cyan-400">Next.js</span> {t("footer.and")}{" "}
+            {t("footer.built")} <span className="text-cyan-400">Next.js</span>
           </p>
         </div>
       </motion.footer>
