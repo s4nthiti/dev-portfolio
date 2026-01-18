@@ -24,7 +24,6 @@ import {
   Sparkles,
   Star
 } from "lucide-react";
-import { LineIcon } from "@/components/icons/line-icon";
 import { useEffect, useState, useRef } from "react";
 
 type Project = {
@@ -387,10 +386,10 @@ function HomeContent() {
               >
                 <Image
                   src="/assets/orange_no_bg.webp"
-                  alt="Orange Leaf Studio"
+                  alt="Orange Leaf Digital Solutions"
                   width={256}
                   height={256}
-                  className="mx-auto w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 drop-shadow-2xl"
+                  className="mx-auto w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 drop-shadow-2xl"
                   priority
                 />
               </motion.div>
@@ -399,7 +398,6 @@ function HomeContent() {
             <motion.h1
               variants={itemVariants}
               className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 md:mb-10 leading-tight px-2"
-              style={{ fontFamily: 'var(--font-pacifico), cursive' }}
             >
               <span className="gradient-text">{t("hero.title1")}</span>{" "}
               <span className={theme === "dark" ? "text-white" : theme === "nature" ? "text-orange-950" : "text-slate-900"}>{t("hero.title2")}</span>
@@ -444,29 +442,6 @@ function HomeContent() {
               {t("hero.subtitle3")}
             </motion.p>
 
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap gap-4 justify-center px-4"
-            >
-              <motion.div 
-                whileHover={isMobile ? {} : { scale: 1.05 }} 
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto"
-              >
-                <a 
-                  href="#contact"
-                  className={`inline-flex items-center justify-center rounded-lg px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-medium transition-all duration-300 ${
-                    theme === "dark"
-                      ? "bg-gradient-to-r from-purple-600 to-purple-500 text-white border border-white/20 hover:from-purple-500 hover:to-purple-400 shadow-lg shadow-purple-500/20"
-                      : theme === "nature"
-                      ? "bg-gradient-to-r from-orange-500 to-orange-400 text-white border border-orange-300/30 hover:from-orange-400 hover:to-orange-300 shadow-lg shadow-orange-500/20"
-                      : "bg-gradient-to-r from-purple-600 to-purple-500 text-white border border-purple-300/30 hover:from-purple-500 hover:to-purple-400 shadow-lg shadow-purple-500/20"
-                  }`}
-                >
-                  {t("hero.getInTouch")}
-                </a>
-              </motion.div>
-            </motion.div>
           </motion.div>
 
           {/* Scroll indicator */}
@@ -683,52 +658,6 @@ function HomeContent() {
           </motion.div>
         </section>
 
-        {/* ClickUp Section */}
-        <section
-          id="clickup"
-          className="py-16 sm:py-24 px-4 sm:px-6"
-        >
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-6xl mx-auto"
-          >
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-8 sm:mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
-                {t("clickup.title")} <span className="gradient-text">{t("clickup.clickup")}</span>
-              </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-orange-400 to-green-400 rounded-full" />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full"
-            >
-              <div className="w-full rounded-2xl overflow-hidden border-2 border-slate-300 dark:border-slate-700">
-                <iframe 
-                  className="clickup-embed w-full" 
-                  src="https://sharing.clickup.com/90182225944/b/h/6-901814455252-2/2b7765218debe75" 
-                  width="100%" 
-                  height="600px"
-                  style={{ background: 'transparent', border: 'none' }} 
-                  onWheel={() => {}}
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        </section>
-
         {/* Contact Section */}
         <section
           id="contact"
@@ -802,15 +731,15 @@ function HomeContent() {
               </motion.a>
 
               <motion.a
-                href="https://line.me/ti/p/~s4nthiti"
+                href="https://github.com/s4nthiti"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={isMobile ? {} : { scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className="glass p-4 sm:p-6 rounded-lg flex items-center gap-3 sm:gap-4 group transition-all"
               >
-                <div className="p-3 rounded-full bg-green-500/20 group-hover:bg-green-500/30 transition-colors">
-                  <LineIcon className="w-6 h-6 text-green-400" />
+                <div className="p-3 rounded-full bg-orange-500/20 group-hover:bg-orange-500/30 transition-colors">
+                  <Github className="w-6 h-6 text-orange-400" />
                 </div>
                 <div className="flex-1 text-left">
                   <p className={`text-sm mb-1 ${
@@ -820,7 +749,7 @@ function HomeContent() {
                       ? "text-orange-600"
                       : "text-slate-500"
                   }`}>
-                    {t("contact.line")}
+                    {t("contact.github")}
                   </p>
                   <p className={`font-medium ${
                     theme === "dark" 
@@ -864,6 +793,8 @@ function HomeContent() {
                   </p>
                 </div>
               </motion.a>
+
+              
             </motion.div>
           </motion.div>
         </section>

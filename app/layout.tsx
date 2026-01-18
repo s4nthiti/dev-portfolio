@@ -18,8 +18,8 @@ const pacifico = Pacifico({
 });
 
 export const metadata: Metadata = {
-  title: "OrangeLeafy - Web Solutions",
-  description: "OrangeLeafy Studio - Professional web development and design services. Crafting modern digital experiences with cutting-edge technologies.",
+  title: "OrangeLeafy - Digital Solutions",
+  description: "OrangeLeafy - Professional digital solutions. Crafting modern digital experiences with cutting-edge technologies.",
   icons: {
     icon: "/favicon.ico",
   },
