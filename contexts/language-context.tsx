@@ -23,9 +23,9 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     "hero.title1": "OrangeLeafy",
-    "hero.title2": "Digital Solutions",
-    "hero.subtitle": "Your modern digital solutions partner.",
-    "hero.subtitle2": "We offer comprehensive digital solutions",
+    "hero.title2": "Studio",
+    "hero.subtitle": "Your modern web solutions partner.",
+    "hero.subtitle2": "We offer comprehensive web development services",
     "hero.subtitle3": "from design to development, with expert guidance.",
     "hero.viewWork": "View My Work",
     "hero.getInTouch": "Contact Me",
@@ -68,7 +68,6 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.line": "Line",
     "contact.facebook": "Facebook",
     "contact.phone": "Phone",
-    "contact.github": "GitHub",
     
     // Footer
     "footer.author": "Santhiti Traiyasakda",
@@ -129,7 +128,6 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.line": "ไลน์",
     "contact.facebook": "เฟสบุ๊ค",
     "contact.phone": "โทรศัพท์",
-    "contact.github": "GitHub",
     
     // Footer
     "footer.author": "สัณฐิติ ไตรยศักดา",
